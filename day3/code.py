@@ -21,16 +21,16 @@ def get_item_priority(item: str) -> int:
 if __name__ == "__main__":
     rucksacks_items = from_file.get_input_for(3)
     if rucksacks_items == None:
-        print("input not found")
+        print("day3/input.txt file not found")
         sys.exit(1)
 
     # Part 1 - Find common items among compartments in a rucksack
     total_priority = 0
 
     for rucksack_contents in rucksacks_items:
-        comparment_length = len(rucksack_contents) // 2
-        compartment_one_items = set(rucksack_contents[:comparment_length])
-        compartment_two_items = set(rucksack_contents[comparment_length:])
+        compartment_length = len(rucksack_contents) // 2
+        compartment_one_items = set(rucksack_contents[:compartment_length])
+        compartment_two_items = set(rucksack_contents[compartment_length:])
 
         total_priority += sum(
             [
