@@ -109,7 +109,6 @@ def get_my_desired_outcome(coded_strategy: str) -> Outcome:
 if __name__ == "__main__":
     strategy_guide_inputs = from_file.get_input_for(2)
     if strategy_guide_inputs == None:
-        print("day2/input.txt file not found")
         sys.exit(1)
 
     # Part 1 - According to first strategy

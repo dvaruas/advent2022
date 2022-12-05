@@ -8,7 +8,6 @@ from utils import from_file
 if __name__ == "__main__":
     calorie_inputs = from_file.get_input_for(1)
     if calorie_inputs == None:
-        print("day1/input.txt file not found")
         sys.exit(1)
 
     calories_list: list[int] = []

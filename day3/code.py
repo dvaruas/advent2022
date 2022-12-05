@@ -21,7 +21,6 @@ def get_item_priority(item: str) -> int:
 if __name__ == "__main__":
     rucksacks_items = from_file.get_input_for(3)
     if rucksacks_items == None:
-        print("day3/input.txt file not found")
         sys.exit(1)
 
     # Part 1 - Find common items among compartments in a rucksack

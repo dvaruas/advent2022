@@ -25,7 +25,6 @@ def check_n_in_range(n: int, range: ElfSectionLimits) -> bool:
 if __name__ == "__main__":
     section_assignments = from_file.get_input_for(4)
     if section_assignments == None:
-        print("day4/input.txt file not found")
         sys.exit(1)
 
     elf_groups: list[ElfGroup] = []
