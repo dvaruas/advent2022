@@ -6,7 +6,7 @@ ROOT_PATH = os.path.join(os.path.dirname(__file__), os.pardir)
 # Returns the file contents for the day given
 # A file with the name "input.txt" should be present inside the dayX directory
 def get_input_for(day: int, strip_chars: str = "\n ") -> Optional[list[str]]:
-    file_path: str = os.path.join(ROOT_PATH, "day{}".format(day), "input.txt")
+    file_path: str = os.path.join(ROOT_PATH, "day{:02d}".format(day), "input.txt")
 
     if not os.path.exists(file_path):
         print("{} not found".format(file_path))
