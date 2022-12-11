@@ -14,6 +14,35 @@ if __name__ == "__main__":
     # Cycle numbers start at 20 and then are at the difference of 40
     total_signal_strength = 0
 
+    # Current cycle number we are at
+    cycle_number = 0
+    # Value of the register
+    x = 1
+
+    i = 0
+    inside_addx_cycle = False
+    while i < len(instructions_lines):
+        # At each iteration we are at a new cycle
+        cycle_number += 1
+
+        if (cycle_number - 20) % 40 == 0:
+            total_signal_strength += cycle_number * x
+
+        line = instructions_lines[i]
+        if line == "noop":
+            i += 1
+        elif inside_addx_cycle:
+            # We got in the addx cycle last time, now it's time to wrap it up
+            inside_addx_cycle = False
+            x += int(line.split()[1])
+            i += 1
+        else:
+            # We are beginning a new addx cycle, which will be over in the next cycle
+            inside_addx_cycle = True
+
+    # The total strength, sum of all the relevant cycle metrics
+    print(total_signal_strength)
+
     # Part 2 - Find the rendered output in the CRT screen
     screen: list[list[str]] = []
     screen_line: list[str] = []
@@ -29,11 +58,6 @@ if __name__ == "__main__":
         # At each iteration we are at a new cycle
         cycle_number += 1
 
-        # Part 1 - adding up to the total signal strength
-        if (cycle_number - 20) % 40 == 0:
-            total_signal_strength += cycle_number * x
-
-        # Part 2 - determining whether a screen pixel will be lit or not
         pixel_position = (cycle_number - 1) % 40
         if pixel_position == 0 and len(screen_line) != 0:
             # Time to switch to a new line on the screen
@@ -48,7 +72,7 @@ if __name__ == "__main__":
         if line == "noop":
             i += 1
         elif inside_addx_cycle:
-            # We got in the  addx cycle last cycle, time to wrap it up
+            # We got in the addx cycle last time, now it's time to wrap it up
             inside_addx_cycle = False
             x += int(line.split()[1])
             i += 1
@@ -56,11 +80,8 @@ if __name__ == "__main__":
             # We are beginning a new addx cycle, which will be over in the next cycle
             inside_addx_cycle = True
 
-    # No time to forget the last screen line we rendered before
+    # Do not forget the last screen line we rendered before
     screen.append(screen_line)
-
-    # The total strength, sum of all the relevant cycle metrics
-    print(total_signal_strength)
 
     # The rendered screen output
     [print("".join(screen_line)) for screen_line in screen]
