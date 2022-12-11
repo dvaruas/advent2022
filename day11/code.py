@@ -155,9 +155,9 @@ if __name__ == "__main__":
     total_number_of_rounds = 10000
 
     # The trick to keep things under control --
-    # (x + a)/n = 1 if and only if ((x%n)+a)/n = 1
-    # (x * a)/n = 1 if and only if ((x%n)*a)/n = 1
-    # Here n is the LCM of all the divisors which we use
+    # (x + a)/n = 1 if and only if ((x % NN) + a)/n = 1
+    # (x * a)/n = 1 if and only if ((x % NN) * a)/n = 1
+    # Here NN is the LCM of all the divisors which we use
     # So at each iteration of the items we can only store the x%n value to reduce computation effort
 
     # Find out the lcm for all the divisors
