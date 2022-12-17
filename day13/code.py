@@ -3,7 +3,6 @@ import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir)))
 
-from ast import literal_eval
 from typing import Optional
 
 from utils import from_file
@@ -63,10 +62,10 @@ if __name__ == "__main__":
     i = 0
     while i < n:
         # Read the left list
-        left = literal_eval(puzzle_input[i])
+        left = eval(puzzle_input[i])
 
         # Read the right list
-        right = literal_eval(puzzle_input[i + 1])
+        right = eval(puzzle_input[i + 1])
 
         # Save both lists
         all_packets.append(left)
@@ -91,6 +90,7 @@ if __name__ == "__main__":
     print(sum)
 
     # Part 2 -- Find the decoder key for the distress signal
+    decoder_key = 1
 
     # Add the two divider packets into the mix
     all_packets.append([[2]])
@@ -110,9 +110,10 @@ if __name__ == "__main__":
         all_packets[j + 1] = item
         i += 1
 
-    # Find index of the two divider packets
-    first_index = all_packets.index([[2]]) + 1
-    second_index = all_packets.index([[6]]) + 1
+    # Compute the decoder key
+    for i in range(n):
+        if all_packets[i] == [[2]] or all_packets[i] == [[6]]:
+            decoder_key *= i + 1
 
     # Value of the decoder key which is the product of the two indices
-    print(first_index * second_index)
+    print(decoder_key)
